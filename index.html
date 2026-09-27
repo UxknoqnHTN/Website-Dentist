@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahnarztpraxis Dudkin | Bremen-Gröpelingen</title>
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --dark: #1d3557;
+            --light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0; color: #333; background-color: var(--light); line-height: 1.6;
+        }
+        header {
+            background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px;
+        }
+        .logo-area { font-size: 1.5rem; font-weight: bold; color: var(--dark); }
+        .nav-links a, .nav-links button { margin-left: 25px; text-decoration: none; color: var(--dark); font-weight: 600; background: none; border: none; cursor: pointer; font-size: 1rem; }
+        .btn-primary {
+            background-color: var(--primary); color: white !important; padding: 10px 20px; border-radius: 5px; cursor: pointer; border: none; font-size: 1rem; transition: background 0.3s; text-decoration: none; display: inline-block;
+        }
+        .btn-primary:hover { background-color: var(--secondary); }
+        .hero {
+            background: linear-gradient(135deg, rgba(0,119,182,0.9), rgba(0,180,216,0.8)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: white; padding: 180px 20px 120px; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+        
+        .section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); }
+
+        /* Modal / Popup für die automatisierte Terminbuchung */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: left; position: relative;
+        }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #777;
+        }
+        .modal-content h2 { color: var(--dark); margin-top: 0; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--dark); }
+        .form-group select {
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;
+        }
+        .action-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-whatsapp { background-color: #25d366; color: white; text-align: center; flex: 1; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .btn-call { background-color: var(--dark); color: white; text-align: center; flex: 1; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 40px 20px; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">🦷 Zahnarztpraxis Dudkin</div>
+            <div class="nav-links">
+                <a href="#leistungen">Leistungen</a>
+                <a href="#kontakt">Kontakt</a>
+                <button class="btn-primary" onclick="openModal()">Online Termin</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Zahnarztpraxis Dudkin in Bremen-Gröpelingen</h1>
+        <p>Moderne Zahnheilkunde, Ästhetik und schmerzfreie Behandlungen. Buchen Sie Ihren Termin jetzt direkt digital.</p>
+        <button class="btn-primary" style="font-size: 1.1rem; padding: 15px 30px;" onclick="openModal()">Termin anfragen</button>
+    </section>
+
+    <div class="section" id="leistungen">
+        <h2 style="text-align: center; color: var(--dark);">Unsere Leistungen</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Prophylaxe & Vorsorge</h3>
+                <p>Professionelle Zahnreinigung und Vorsorgeuntersuchungen für dauerhaft gesunde Zähne.</p>
+            </div>
+            <div class="card">
+                <h3>Ästhetische Zahnheilkunde</h3>
+                <p>Bleaching, Veneers und zahnfarbene Füllungen für Ihr strahlendes Lächeln.</p>
+            </div>
+            <div class="card">
+                <h3>Zahnersatz & Implantate</h3>
+                <p>Hochwertiger, passgenauer Zahnersatz und moderne Implantologie.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="kontakt">
+        <h2 style="text-align: center; color: var(--dark);">Standort & Kontakt</h2>
+        <p style="text-align: center;">Besuchen Sie uns in unserer Praxis in Bremen-Gröpelingen.</p>
+    </div>
+
+    <!-- Das Pop-up Fenster für die automatisierte Buchung -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Termin vereinbaren</h2>
+            <p>Wählen Sie Ihre gewünschte Leistung aus:</p>
+            
+            <div class="form-group">
+                <label for="serviceSelect">Behandlung / Dienstleistung:</label>
+                <select id="serviceSelect">
+                    <option value="Kontrolluntersuchung & Vorsorge">Kontrolluntersuchung & Vorsorge</option>
+                    <option value="Professionelle Zahnreinigung (PZR)">Professionelle Zahnreinigung (PZR)</option>
+                    <option value="Schmerzbehandlung / Notfall">Schmerzbehandlung / Notfall</option>
+                    <option value="Ästhetische Zahnheilkunde / Bleaching">Ästhetische Zahnheilkunde / Bleaching</option>
+                    <option value="Beratung für Zahnersatz / Implantate">Beratung für Zahnersatz / Implantate</option>
+                </select>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #666;">Wie möchten Sie den Termin anfragen?</p>
+            
+            <div class="action-buttons">
+                <a href="#" id="whatsappLink" class="btn-whatsapp" onclick="sendWhatsApp(event)">Per WhatsApp anfragen</a>
+                <a href="tel:+494210000000" class="btn-call">Direkt Anrufen</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Zahnarztpraxis Dudkin</strong></p>
+        <p>Heeslinger Straße 10, 28237 Bremen-Gröpelingen</p>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">&copy; 2026 Zahnarztpraxis Dudkin | Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+        function sendWhatsApp(e) {
+            const service = document.getElementById('serviceSelect').value;
+            // Ersetze die Nummer unten später mit der echten WhatsApp-Nummer deiner Praxis (im internationalen Format ohne '+' und Leerzeichen, z.B. 4917012345678)
+            const phoneNumber = "4915000000000"; 
+            const message = encodeURIComponent(`Hallo Zahnarztpraxis Dudkin, ich interessiere mich für folgende Dienstleistung und möchte einen Termin vereinbaren: ${service}`);
+            document.getElementById('whatsappLink').href = `https://wa.me/${phoneNumber}?text=${message}`;
+        }
+    </script>
+
+</body>
+</html>
